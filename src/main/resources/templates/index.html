@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>トップ画面</title>
+        <meta charset="utf-8" />
+    </head>
+<body>
+    <h1>トップ画面</h1>
+    <p>いろいろとあります。</p>
+    <p>とりあえずフォーム出します。</p>
+    <form method="post" th:action="@{/main}" th:object="${form}">
+        <label for="mail-input">お使いのメールアドレス（必須）</label>
+        <input type="text" th:field="*{mail}" id="mail-input" required>
+        <label for="password-input">パスワード（任意）</label>
+        <input type="password" th:field="*{password}" id="password-input">
+        <label for="mailer-selection">お使いのメーラー</label>
+        <select th:field="*{mailer}" id="mailer-selection">
+            <option th:value="''">選択してください</option>
+            <option th:each="mailer : ${mailers}" th:value="${mailer.name}" th:text="${mailer.name}"></option>
+        </select>
+        <input type="submit" value="送信">
+    </form>
+    <p>ばいばい！</p>
+</body>
+</html>
