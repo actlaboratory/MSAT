@@ -1,4 +1,4 @@
-package org.actlab.msat.core.settingobjects;
+package org.actlab.msat.common.settingobjects;
 
 public class Setting {
     private Pop pop = null;

@@ -1,7 +1,9 @@
-package org.actlab.msat.core.mailers;
+package org.actlab.msat.common.mailers;
 
-import org.actlab.msat.core.settingobjects.Setting;
+import org.actlab.msat.common.settingobjects.Setting;
+import org.springframework.stereotype.Component;
 
+@Component
 public abstract class Mailerbase {
     public String getName() {
         return this.getClass().getSimpleName();

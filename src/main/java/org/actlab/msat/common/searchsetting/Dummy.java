@@ -1,9 +1,9 @@
-package org.actlab.msat.core.searchsetting;
+package org.actlab.msat.common.searchsetting;
 
-import org.actlab.msat.core.settingobjects.Imap;
-import org.actlab.msat.core.settingobjects.Pop;
-import org.actlab.msat.core.settingobjects.Setting;
-import org.actlab.msat.core.settingobjects.Smtp;
+import org.actlab.msat.common.settingobjects.Imap;
+import org.actlab.msat.common.settingobjects.Pop;
+import org.actlab.msat.common.settingobjects.Setting;
+import org.actlab.msat.common.settingobjects.Smtp;
 
 public class Dummy implements Searchsettinginterface{
     @Override
