@@ -1,7 +1,8 @@
 package org.actlab.msat.common.settingobjects;
 
+import java.io.Serializable;
 
-abstract class Settingbase {
+abstract class Settingbase  implements Serializable{
     protected String host;
     protected int port;
     protected String user;

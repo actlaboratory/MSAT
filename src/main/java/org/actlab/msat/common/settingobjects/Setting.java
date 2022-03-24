@@ -1,6 +1,8 @@
 package org.actlab.msat.common.settingobjects;
 
-public class Setting {
+import java.io.Serializable;
+
+public class Setting implements Serializable{
     private Pop pop = null;
     private Imap imap = null;
     private Smtp smtp = null;

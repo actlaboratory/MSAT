@@ -1,10 +1,11 @@
 package org.actlab.msat.common.mailers;
 
-import org.actlab.msat.common.settingobjects.Setting;
-import org.springframework.stereotype.Component;
+import java.io.Serializable;
 
-@Component
-public abstract class Mailerbase {
+import org.actlab.msat.common.settingobjects.Setting;
+
+
+public abstract class Mailerbase implements Serializable{
     public String getName() {
         return this.getClass().getSimpleName();
     }
