@@ -1,0 +1,53 @@
+package org.actlab.msat.common.utils;
+
+import java.util.Hashtable;
+import java.util.TreeMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.naming.NamingException;
+import javax.naming.directory.Attribute;
+import javax.naming.directory.Attributes;
+import javax.naming.directory.DirContext;
+import javax.naming.directory.InitialDirContext;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class MxLookup {
+    private Pattern mxPattern = Pattern.compile("^(\\d+) ([0-9a-z\\.]+)\\.$");
+
+    public TreeMap<Integer, String> lookup(String domain){
+        Hashtable<String,String> env = new Hashtable<String,String>();
+        env.put("java.naming.factory.initial", "com.sun.jndi.dns.DnsContextFactory");
+        try{
+            DirContext ictx = new InitialDirContext(env);
+            Attributes attrs = ictx.getAttributes(domain, new String[] { "MX" });
+            Attribute attr = attrs.get( "MX" );        
+            if((attr == null) | (attr.size() == 0)){
+                return null;
+            }
+            TreeMap<Integer, String> records = new TreeMap<Integer, String>();
+            for(int i=0; i<attr.size(); i++){
+                Object record_obj = attr.get(i);
+                if(record_obj == null){
+                    continue;
+                }
+                String record = record_obj.toString();
+                Matcher matcher = mxPattern.matcher(record);
+                if(!matcher.matches()){
+                    continue;
+                }
+                int priority = Integer.parseInt(matcher.group(1));
+                String exchanger = matcher.group(2);
+                records.put(priority, exchanger);
+            }
+            if(records.size() == 0){
+                return null;
+            }
+            return records;
+        } catch(NamingException e){
+            return null;
+        }
+    }
+}
