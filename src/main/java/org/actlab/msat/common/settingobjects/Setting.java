@@ -6,10 +6,12 @@ public class Setting implements Serializable{
     private Pop pop = null;
     private Imap imap = null;
     private Smtp smtp = null;
+    private String address;
     private String user;
     private String password;
 
     public Setting(String user, String password) {
+        this.address = user;
         this.user = user;
         this.password = password;
     }
@@ -36,6 +38,10 @@ public class Setting implements Serializable{
 
     public void setSmtp(Smtp smtp) {
         this.smtp = smtp;
+    }
+
+    public String getAddress(){
+        return address;
     }
 
     public String getUser() {
