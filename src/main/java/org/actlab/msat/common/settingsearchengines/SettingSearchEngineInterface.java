@@ -1,7 +1,7 @@
-package org.actlab.msat.common.searchsetting;
+package org.actlab.msat.common.settingsearchengines;
 
 import org.actlab.msat.common.settingobjects.Setting;
 
-public interface Searchsettinginterface {
+public interface SettingSearchEngineInterface {
     public boolean search(Setting setting);
 }

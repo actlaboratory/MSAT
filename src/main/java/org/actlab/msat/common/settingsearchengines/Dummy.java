@@ -1,11 +1,13 @@
-package org.actlab.msat.common.searchsetting;
+package org.actlab.msat.common.settingsearchengines;
 
 import org.actlab.msat.common.settingobjects.Imap;
 import org.actlab.msat.common.settingobjects.Pop;
 import org.actlab.msat.common.settingobjects.Setting;
 import org.actlab.msat.common.settingobjects.Smtp;
+import org.springframework.stereotype.Component;
 
-public class Dummy implements Searchsettinginterface{
+@Component
+public class Dummy implements SettingSearchEngineInterface{
     @Override
     public boolean search(Setting setting) {
         Pop pop = new Pop("actlab.org", 995, true, "test@actlab.org", "at113");
