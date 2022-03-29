@@ -2,6 +2,7 @@ package org.actlab.msat.common.mailers;
 
 import java.io.Serializable;
 
+import org.actlab.msat.common.mailProtocols;
 import org.actlab.msat.common.settingobjects.Setting;
 
 
@@ -22,7 +23,7 @@ public abstract class Mailerbase implements Serializable{
         return true;
     }
 
-    public String generateAutoConfig(Setting setting){
+    public String generateAutoConfig(mailProtocols protocol, Setting setting){
         return "";
     }
 }
