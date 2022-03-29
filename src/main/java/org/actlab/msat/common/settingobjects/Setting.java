@@ -9,6 +9,8 @@ public class Setting implements Serializable{
     private String address;
     private String user;
     private String password;
+    private boolean guessedImap;
+    private boolean guessedPop;
 
     public Setting(String user, String password) {
         this.address = user;
@@ -52,4 +54,19 @@ public class Setting implements Serializable{
         return password;
     }
 
+    public boolean isGuessedImap(){
+        return guessedImap;
+    }
+
+    public void setGuessedImap(boolean guessedImap){
+        this.guessedImap = guessedImap;
+    }
+
+    public boolean isGuessedPop(){
+        return guessedPop;
+    }
+
+    public void setGuessedPop(boolean guessedPop){
+        this.guessedPop = guessedPop;
+    }
 }
