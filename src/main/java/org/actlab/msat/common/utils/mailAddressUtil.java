@@ -14,17 +14,20 @@ import javax.naming.directory.InitialDirContext;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MxLookup {
+public class mailAddressUtil {
     private Pattern mxPattern = Pattern.compile("^(\\d+) ([0-9a-z\\.]+)\\.$");
 
-    public TreeMap<Integer, String> lookup(String domain){
+    public TreeMap<Integer, String> mxLookup(String domain){
         Hashtable<String,String> env = new Hashtable<String,String>();
         env.put("java.naming.factory.initial", "com.sun.jndi.dns.DnsContextFactory");
         try{
             DirContext ictx = new InitialDirContext(env);
             Attributes attrs = ictx.getAttributes(domain, new String[] { "MX" });
             Attribute attr = attrs.get( "MX" );        
-            if((attr == null) | (attr.size() == 0)){
+            if(attr == null){
+                return null;
+            }
+            if(attr.size() == 0){
                 return null;
             }
             TreeMap<Integer, String> records = new TreeMap<Integer, String>();
@@ -50,4 +53,13 @@ public class MxLookup {
             return null;
         }
     }
+
+    public String getDomainFromAddress(String address){
+        String[] splited_address = address.split("@");
+        if(splited_address.length == 0){
+            return "";
+        }
+        return splited_address[1];
+    }
+
 }

@@ -8,7 +8,10 @@
     <h1>トップ画面</h1>
     <p>いろいろとあります。</p>
     <p>とりあえずフォーム出します。</p>
-    <form method="post" th:action="@{/main}" th:object="${form}">
+    <form method="post" th:action="@{/start}" th:object="${form}">
+        <ul th:if="${#fields.hasErrors('*')}">
+            <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
+        </ul>
         <label for="mail-input">お使いのメールアドレス（必須）</label>
         <input type="text" th:field="*{mail}" id="mail-input" required>
         <label for="password-input">パスワード（任意）</label>
