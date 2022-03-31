@@ -10,7 +10,9 @@
     <p>とりあえずフォーム出します。</p>
     <form method="post" th:action="@{/start}" th:object="${form}">
         <ul th:if="${#fields.hasErrors('*')}">
-            <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
+            <li th:each="err : ${#fields.errors('mail')}" th:text="${err}">Input is incorrect</li>
+            <li th:each="err : ${#fields.errors('password')}" th:text="${err}">Input is incorrect</li>
+            <li th:each="err : ${#fields.errors('mailer')}" th:text="${err}">Input is incorrect</li>
         </ul>
         <label for="mail-input">お使いのメールアドレス（必須）</label>
         <input type="text" th:field="*{mail}" id="mail-input" required>
@@ -19,7 +21,7 @@
         <label for="mailer-selection">お使いのメーラー</label>
         <select th:field="*{mailer}" id="mailer-selection">
             <option th:value="''">選択してください</option>
-            <option th:each="mailer : ${mailers}" th:value="${mailer.name}" th:text="${mailer.name}"></option>
+            <option th:each="mailer : ${mailers}" th:value="${mailer.key}" th:text="${mailer.value.name}"></option>
         </select>
         <input type="submit" value="送信">
     </form>

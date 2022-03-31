@@ -1,6 +1,6 @@
 package org.actlab.msat.controllers;
 
-import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 @Controller
 public class MainController {
     @Autowired
-    List<Mailerbase> mailers;
+    Map<String, Mailerbase> mailers;
 
     @Autowired
     SettingSearchService searchService;
@@ -37,7 +37,7 @@ public class MainController {
 
 
     @ModelAttribute("mailers")
-    public List<Mailerbase> getMailers(){
+    public Map<String, Mailerbase> getMailers(){
         return mailers;
     }
 
@@ -63,14 +63,14 @@ public class MainController {
         inputDto.setMailerName(form.getMailer());
         mailSettingDto settingDto = searchService.search(inputDto);
         session.setAttribute("mailSetting", settingDto.getSetting());
-        session.setAttribute("usingMailer", settingDto.getMailer());
+        session.setAttribute("mailerName", settingDto.getMailerName());
         return "redirect:/disp";
     }
 
     @RequestMapping("/disp")
-    public String dispSetting(@SessionAttribute("mailSetting") Setting setting, @SessionAttribute("usingMailer") Mailerbase usingMailer, Model model){
+    public String dispSetting(@SessionAttribute("mailSetting") Setting setting, @SessionAttribute("mailerName") String mailerName, Model model){
         model.addAttribute("mailSetting", setting);
-        model.addAttribute("usingMailer", usingMailer);
+        model.addAttribute("usingMailer", mailers.get(mailerName));
         return "displaySettingInfo";
     }
 

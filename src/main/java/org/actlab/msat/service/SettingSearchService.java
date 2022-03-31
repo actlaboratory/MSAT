@@ -1,6 +1,7 @@
 package org.actlab.msat.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.actlab.msat.common.dto.UserInputDto;
 import org.actlab.msat.common.dto.mailSettingDto;
@@ -15,21 +16,13 @@ import org.springframework.web.server.ResponseStatusException;
 @Service
 public class SettingSearchService {
     @Autowired
-    List<Mailerbase> mailers;
+    Map<String, Mailerbase> mailers;
     @Autowired
     List<SettingSearchEngineInterface> searchEngines;
 
     public mailSettingDto search(UserInputDto inputDto){
-        Mailerbase usingMailer = null;
         String mailerName = inputDto.getMailerName();
-        for(Mailerbase mailer : mailers){
-            if(mailer.getName().equals(mailerName)){
-                usingMailer = mailer;
-                System.out.println("find!");
-                break;
-            }
-        }
-        if(usingMailer == null){ //指定された名前を持つmailerが見つからない
+        if(!mailers.containsKey(mailerName)){ //指定された名前を持つmailerが見つからない
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
         Setting setting = new Setting(inputDto.getMail(), inputDto.getPassword());
@@ -37,7 +30,7 @@ public class SettingSearchService {
             engine.search(setting);
         }
         mailSettingDto settingDto = new mailSettingDto();
-        settingDto.setMailer(usingMailer);
+        settingDto.setMailerName(mailerName);
         settingDto.setSetting(setting);
         return settingDto;
     }

@@ -1,11 +1,11 @@
 package org.actlab.msat.common.dto;
 
-import org.actlab.msat.common.mailers.Mailerbase;
+
 import org.actlab.msat.common.settingobjects.Setting;
 
 public class mailSettingDto {
     private Setting setting;
-    private Mailerbase mailer;
+    private String mailerName;
 
     public Setting getSetting() {
         return setting;
@@ -13,10 +13,11 @@ public class mailSettingDto {
     public void setSetting(Setting setting) {
         this.setting = setting;
     }
-    public Mailerbase getMailer() {
-        return mailer;
+
+    public String getMailerName() {
+        return mailerName;
     }
-    public void setMailer(Mailerbase mailer) {
-        this.mailer = mailer;
+    public void setMailerName(String mailerName) {
+        this.mailerName = mailerName;
     }
 }
