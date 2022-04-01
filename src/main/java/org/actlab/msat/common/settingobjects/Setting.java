@@ -1,6 +1,9 @@
 package org.actlab.msat.common.settingobjects;
 
 import java.io.Serializable;
+import java.util.TreeMap;
+
+import org.actlab.msat.common.utils.mailAddressUtil;
 
 public class Setting implements Serializable{
     private Pop pop = null;
@@ -9,6 +12,7 @@ public class Setting implements Serializable{
     private String address;
     private String user;
     private String password;
+    private TreeMap<Integer, String> mxRecords;
     private boolean guessedImap;
     private boolean guessedPop;
 
@@ -16,6 +20,8 @@ public class Setting implements Serializable{
         this.address = user;
         this.user = user;
         this.password = password;
+        String domain = mailAddressUtil.getDomainFromAddress(user);
+        mxRecords = mailAddressUtil.mxLookup(domain);
     }
 
     public Pop getPop() {
@@ -52,6 +58,10 @@ public class Setting implements Serializable{
 
     public String getPassword() {
         return password;
+    }
+
+    public TreeMap<Integer, String> getMxRecords(){
+        return mxRecords;
     }
 
     public boolean isGuessedImap(){
