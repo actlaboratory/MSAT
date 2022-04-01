@@ -32,8 +32,6 @@ public class MainController {
     @Autowired
     HttpSession session;
 
-    @Autowired
-    mailAddressUtil addressUtil;
 
 
     @ModelAttribute("mailers")
@@ -49,8 +47,8 @@ public class MainController {
     @PostMapping("/start")
     public String start(@Validated Form form, BindingResult result){
         if(!result.hasFieldErrors("mail")){
-            String domain = addressUtil.getDomainFromAddress(form.getMail());
-            if(addressUtil.mxLookup(domain) == null){
+            String domain = mailAddressUtil.getDomainFromAddress(form.getMail());
+            if(mailAddressUtil.mxLookup(domain) == null){
                 result.rejectValue("mail", "invalid.form.mail", "invalid mail address");
             }
         }

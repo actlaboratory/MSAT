@@ -15,9 +15,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class mailAddressUtil {
-    private Pattern mxPattern = Pattern.compile("^(\\d+) ([0-9a-z\\.]+)\\.$");
+    private static Pattern mxPattern = Pattern.compile("^(\\d+) ([0-9a-z\\.]+)\\.$");
 
-    public TreeMap<Integer, String> mxLookup(String domain){
+    public static TreeMap<Integer, String> mxLookup(String domain){
         Hashtable<String,String> env = new Hashtable<String,String>();
         env.put("java.naming.factory.initial", "com.sun.jndi.dns.DnsContextFactory");
         try{
@@ -54,7 +54,7 @@ public class mailAddressUtil {
         }
     }
 
-    public String getDomainFromAddress(String address){
+    public static String getDomainFromAddress(String address){
         String[] splited_address = address.split("@");
         if(splited_address.length == 0){
             return "";
