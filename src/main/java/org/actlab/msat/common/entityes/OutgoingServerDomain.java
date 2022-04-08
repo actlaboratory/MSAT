@@ -1,20 +1,18 @@
 package org.actlab.msat.common.entityes;
 
+
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.GenerationType;
-
-@Entity
-@Setter
 @Getter
-public class IncomingServerDomain {
+@Setter
+public class OutgoingServerDomain {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ID;
@@ -23,5 +21,5 @@ public class IncomingServerDomain {
     private String domain;
 
     @ManyToOne
-    private IncomingServerSetting setting;
+    private OutgoingServerSetting setting;
 }
