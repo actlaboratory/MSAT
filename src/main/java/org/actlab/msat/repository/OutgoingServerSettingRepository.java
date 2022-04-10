@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface OutgoingServerSettingRepository extends JpaRepository<OutgoingServerSetting, Long>{
+public interface OutgoingServerSettingRepository extends JpaRepository<OutgoingServerSetting, Integer>{
 }
