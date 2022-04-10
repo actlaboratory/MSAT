@@ -23,30 +23,32 @@ public class OutgoingServerSetting {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    private Long ID;
+    private Integer ID;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "char")
     private String providerName;
 
     @Column(nullable = false)
     private String host;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "SMALLINT")
     private Integer port;
 
-    @Column(name = "user_name", nullable = false)
+    @Column(nullable = false)
     private String userName;
 
     @Column(nullable = false)
     private Boolean ssl;
 
+    @Column(columnDefinition = "text")
     private String description;
 
     private String helpUrl;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "char")
     private String source;
 
+    @Column(columnDefinition = "char")
     private String sourceUrl;
 
     @Temporal(TemporalType.DATE)

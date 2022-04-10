@@ -28,19 +28,19 @@ public class IncomingServerSetting {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    private Long ID;
+    private Integer ID;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "char")
     private IncomingServerTypes serverType;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "char")
     private String providerName;
 
     @Column(nullable = false)
     private String host;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "SMALLINT")
     private Integer port;
 
     @Column(name = "user_name", nullable = false)
@@ -49,13 +49,15 @@ public class IncomingServerSetting {
     @Column(nullable = false)
     private Boolean ssl;
 
+    @Column(columnDefinition = "text")
     private String description;
 
     private String helpUrl;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "char")
     private String source;
 
+    @Column(columnDefinition = "char")
     private String sourceUrl;
 
     @Temporal(TemporalType.DATE)

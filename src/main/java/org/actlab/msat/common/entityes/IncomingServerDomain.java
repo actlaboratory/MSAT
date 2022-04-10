@@ -22,9 +22,9 @@ import lombok.Setter;
 public class IncomingServerDomain {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long ID;
+    private Integer ID;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "char")
     private String domain;
 
     @ManyToOne
