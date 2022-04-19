@@ -48,7 +48,7 @@ public class MainController {
     public String start(@Validated Form form, BindingResult result){
         if(!result.hasFieldErrors("mail")){
             String domain = mailAddressUtil.getDomainFromAddress(form.getMail());
-            if(mailAddressUtil.mxLookup(domain) == null){
+            if(mailAddressUtil.mxLookup(domain).isEmpty()){
                 result.rejectValue("mail", "invalid.form.mail", "invalid mail address");
             }
         }

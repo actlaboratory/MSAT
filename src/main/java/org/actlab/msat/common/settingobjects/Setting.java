@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.TreeMap;
 
 import org.actlab.msat.common.utils.mailAddressUtil;
+import java.util.Optional;
 
 public class Setting implements Serializable{
     private Pop pop = null;
@@ -21,7 +22,10 @@ public class Setting implements Serializable{
         this.user = user;
         this.password = password;
         String domain = mailAddressUtil.getDomainFromAddress(user);
-        mxRecords = mailAddressUtil.mxLookup(domain);
+        Optional<TreeMap<Integer, String>> mx = mailAddressUtil.mxLookup(domain);
+        mx.ifPresent((records) -> {
+            this.mxRecords = records;
+        });
     }
 
     public Pop getPop() {

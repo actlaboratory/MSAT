@@ -1,6 +1,7 @@
 package org.actlab.msat.common.utils;
 
 import java.util.Hashtable;
+import java.util.Optional;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -17,7 +18,7 @@ import org.springframework.stereotype.Component;
 public class mailAddressUtil {
     private static Pattern mxPattern = Pattern.compile("^(\\d+) ([0-9a-z\\.]+)\\.$");
 
-    public static TreeMap<Integer, String> mxLookup(String domain){
+    public static Optional<TreeMap<Integer, String>> mxLookup(String domain){
         Hashtable<String,String> env = new Hashtable<String,String>();
         env.put("java.naming.factory.initial", "com.sun.jndi.dns.DnsContextFactory");
         try{
@@ -25,10 +26,10 @@ public class mailAddressUtil {
             Attributes attrs = ictx.getAttributes(domain, new String[] { "MX" });
             Attribute attr = attrs.get( "MX" );        
             if(attr == null){
-                return null;
+                return Optional.empty();
             }
             if(attr.size() == 0){
-                return null;
+                return Optional.empty();
             }
             TreeMap<Integer, String> records = new TreeMap<Integer, String>();
             for(int i=0; i<attr.size(); i++){
@@ -46,11 +47,11 @@ public class mailAddressUtil {
                 records.put(priority, exchanger);
             }
             if(records.size() == 0){
-                return null;
+                return Optional.empty();
             }
-            return records;
+            return Optional.of(records);
         } catch(NamingException e){
-            return null;
+            return Optional.empty();
         }
     }
 
