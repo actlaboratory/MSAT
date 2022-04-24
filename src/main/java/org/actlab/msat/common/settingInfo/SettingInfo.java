@@ -1,40 +1,41 @@
 package org.actlab.msat.common.settingInfo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
-public abstract class SettingInfo {
+public abstract class SettingInfo implements Serializable, Comparable<SettingInfo>{
     @NotNull
-    private String providerName;
+    protected String providerName;
 
     @NotNull
-    private String host;
+    protected String host;
 
     @NotNull
     @Max(65535)
-    private Integer port;
+    protected Integer port;
 
     @NotNull
-    private String userName;
+    protected String userName;
 
     @NotNull
-    private Boolean ssl;
+    protected Boolean ssl;
 
-    private String description;
+    protected String description;
 
-    private String helpUrl;
+    protected String helpUrl;
 
     @NotNull
-    private String source;
+    protected String source;
 
-    private String sourceUrl;
+    protected String sourceUrl;
 
     @NotNull
     @Past
-    private Date updatedDate;
+    protected Date updatedDate;
 
     public String getProviderName() {
         return providerName;
@@ -115,4 +116,11 @@ public abstract class SettingInfo {
     public void setUpdatedDate(Date updatedDate) {
         this.updatedDate = updatedDate;
     }
+
+    @Override
+    public int compareTo(SettingInfo target) {
+        return Integer.valueOf(calcPoint()).compareTo(target.calcPoint());
+    }
+
+    abstract public int calcPoint();
 }
