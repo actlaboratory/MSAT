@@ -1,7 +1,10 @@
 package org.actlab.msat.common.settingsearchengines;
 
-import org.actlab.msat.common.settingobjects.Setting;
+import java.util.TreeMap;
+
+import org.actlab.msat.common.settingInfo.SettingInfos;
+
 
 public interface SettingSearchEngineInterface {
-    public boolean search(Setting setting);
+    public boolean searchSetting(SettingInfos infos, String mailAddress, TreeMap<Integer, String> mxRecords);
 }
