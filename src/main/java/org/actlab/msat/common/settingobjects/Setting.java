@@ -1,15 +1,11 @@
 package org.actlab.msat.common.settingobjects;
 
 import java.io.Serializable;
+import java.util.Optional;
 import java.util.TreeMap;
 
-import org.actlab.msat.common.settingInfo.ImapInfo;
-import org.actlab.msat.common.settingInfo.PopInfo;
-import org.actlab.msat.common.settingInfo.SettingInfo;
 import org.actlab.msat.common.settingInfo.SettingInfos;
-import org.actlab.msat.common.settingInfo.SmtpInfo;
 import org.actlab.msat.common.utils.mailAddressUtil;
-import java.util.Optional;
 
 public class Setting implements Serializable{
     private Pop pop = null;
