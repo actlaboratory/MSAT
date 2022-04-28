@@ -3,6 +3,11 @@ package org.actlab.msat.common.settingobjects;
 import java.io.Serializable;
 import java.util.TreeMap;
 
+import org.actlab.msat.common.settingInfo.ImapInfo;
+import org.actlab.msat.common.settingInfo.PopInfo;
+import org.actlab.msat.common.settingInfo.SettingInfo;
+import org.actlab.msat.common.settingInfo.SettingInfos;
+import org.actlab.msat.common.settingInfo.SmtpInfo;
 import org.actlab.msat.common.utils.mailAddressUtil;
 import java.util.Optional;
 
@@ -14,8 +19,8 @@ public class Setting implements Serializable{
     private String user;
     private String password;
     private TreeMap<Integer, String> mxRecords;
-    private boolean guessedImap;
-    private boolean guessedPop;
+    private boolean guessedImap = false;
+    private boolean guessedPop = false;
 
     public Setting(String user, String password) {
         this.address = user;
@@ -26,6 +31,12 @@ public class Setting implements Serializable{
         mx.ifPresent((records) -> {
             this.mxRecords = records;
         });
+    }
+
+    public static Setting generateSettingFromInfo(SettingInfos info, String mailaddress, String password){
+        Setting setting = new Setting(mailaddress, password);
+        SettingMapper.mappingSettings(info, setting);
+        return setting;
     }
 
     public Pop getPop() {

@@ -2,12 +2,15 @@ package org.actlab.msat.common.settingobjects;
 
 import java.io.Serializable;
 
+
+
 abstract class Settingbase  implements Serializable{
     protected String host;
     protected int port;
     protected String user;
     protected String password;
     protected boolean ssl;
+
 
     /**
      * @return String return the host
@@ -45,4 +48,3 @@ abstract class Settingbase  implements Serializable{
     }
 
 }
-

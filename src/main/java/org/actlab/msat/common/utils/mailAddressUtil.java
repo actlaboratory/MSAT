@@ -63,4 +63,11 @@ public class mailAddressUtil {
         return splited_address[1];
     }
 
+    public static String getMailAddressLocalPart(String address){
+        String[] splited_address = address.split("@");
+        if(splited_address.length == 0){
+            return address;
+        }
+        return splited_address[0];
+    }
 }

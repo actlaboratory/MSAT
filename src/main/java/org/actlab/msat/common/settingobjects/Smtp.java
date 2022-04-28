@@ -1,25 +1,26 @@
 package org.actlab.msat.common.settingobjects;
 
-public class Smtp extends Settingbase{
-    private boolean auth;
+import org.actlab.msat.common.settingInfo.SmtpInfo;
 
+public class Smtp extends Settingbase{
+    private SmtpInfo info;
     public Smtp(
         String host,
         int port,
         boolean ssl,
-        boolean auth,
         String user,
-        String password
+        String password,
+        SmtpInfo info
     ) {
         this.host = host;
         this.port = port;
         this.ssl = ssl;
-        this.auth = auth;
         this.user = user;
         this.password = password;
-    }    
+        this.info = info;
+    }
 
-    public boolean isAuth(){
-        return this.auth;
+    public SmtpInfo getInfo() {
+        return info;
     }
 }
