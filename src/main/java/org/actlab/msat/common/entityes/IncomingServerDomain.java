@@ -13,12 +13,12 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+
+
 
 @Entity
-@Setter
-@Getter
+@Data
 public class IncomingServerDomain {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

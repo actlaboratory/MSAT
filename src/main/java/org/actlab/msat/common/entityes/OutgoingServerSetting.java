@@ -13,12 +13,10 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 @Entity
-@Getter
-@Setter
+@Data
 public class OutgoingServerSetting {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

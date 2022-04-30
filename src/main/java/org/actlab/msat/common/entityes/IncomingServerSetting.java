@@ -15,15 +15,13 @@ import javax.persistence.TemporalType;
 
 import org.actlab.msat.common.IncomingServerTypes;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.GenerationType;
 
 
+@Data
 @Entity
-@Setter
-@Getter
 public class IncomingServerSetting {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
