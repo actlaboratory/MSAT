@@ -55,11 +55,15 @@ public class OutgoingServerSetting {
 
     @PrePersist
     public void prePersist(){
-        updatedDate = new Date();
+        if(updatedDate == null){
+            updatedDate = new Date();
+        }
     }
 
     @PreUpdate
     public void preUpdate(){
-        updatedDate = new Date();
+        if(updatedDate == null){
+            updatedDate = new Date();
+        }
     }
 }

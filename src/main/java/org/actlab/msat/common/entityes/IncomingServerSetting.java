@@ -12,6 +12,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Null;
 
 import org.actlab.msat.common.IncomingServerTypes;
 
@@ -64,11 +65,15 @@ public class IncomingServerSetting {
 
     @PrePersist
     public void prePersist(){
-        updatedDate = new Date();
+        if(updatedDate == null){
+            updatedDate = new Date();
+        }
     }
 
     @PreUpdate
     public void preUpdate(){
-        updatedDate = new Date();
+        if(updatedDate == null){
+            updatedDate = new Date();
+        }
     }
 }
