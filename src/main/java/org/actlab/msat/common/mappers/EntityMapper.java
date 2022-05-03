@@ -9,9 +9,10 @@ import org.actlab.msat.common.settingInfo.ImapInfo;
 import org.actlab.msat.common.settingInfo.PopInfo;
 import org.actlab.msat.common.settingInfo.SmtpInfo;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", imports = {IncomingServerTypes.class})
 public abstract class EntityMapper {
     abstract public SmtpInfo outGoingServerSettingEntityToSmtpInfo(OutgoingServerSetting entity);
 
@@ -45,7 +46,16 @@ public abstract class EntityMapper {
 
     public PopInfo incomingServerDomainEntityToPopInfo(IncomingServerDomain entity){
         if(entity == null){ return null; }
-        return incomingServerSettingEntityToPopInfo(entity.getSetting());
+        return incomingSettingEntityToPopInfo(entity.getSetting());
     }
 
+    @Mapping(target = "ID", ignore = true)
+    abstract public OutgoingServerSetting smtpInfoToOutgoingServerEntity(SmtpInfo info);
+
+    @Mapping(target = "serverType", expression = "java(IncomingServerTypes.IMAP)")
+    @Mapping(target = "ID", ignore = true)
+    abstract public IncomingServerSetting imapInfoToIncomingServerEntity(ImapInfo info);
+
+    @Mapping(target = "serverType", expression = "java(IncomingServerTypes.POP)")
+    abstract public IncomingServerSetting popInfoToIncomingServerEntity(PopInfo info);
 }
