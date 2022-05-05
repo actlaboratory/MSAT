@@ -10,6 +10,7 @@ public class Smtp extends Settingbase{
         boolean ssl,
         String user,
         String password,
+        boolean oauth2,
         SmtpInfo info
     ) {
         this.host = host;
@@ -17,6 +18,7 @@ public class Smtp extends Settingbase{
         this.ssl = ssl;
         this.user = user;
         this.password = password;
+        this.oauth2 = oauth2;
         this.info = info;
     }
 

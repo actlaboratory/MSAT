@@ -10,7 +10,7 @@ abstract class Settingbase  implements Serializable{
     protected String user;
     protected String password;
     protected boolean ssl;
-
+    protected boolean oauth2;
 
     /**
      * @return String return the host
@@ -47,4 +47,7 @@ abstract class Settingbase  implements Serializable{
         return ssl;
     }
 
+    public boolean isOauth2() {
+        return oauth2;
+    }
 }

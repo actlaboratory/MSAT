@@ -26,7 +26,7 @@ public class SettingMapper {
             .replace("%EMAILADDRESS%", setting.getAddress())
             .replace("%EMAILDOMAIN%", mailAddressUtil.getDomainFromAddress(setting.getAddress()))
             .replace("%EMAILLOCALPART%", mailAddressUtil.getMailAddressLocalPart(setting.getAddress()));
-            Smtp smtp = new Smtp(host, port, ssl, user, setting.getPassword(), settingInfo);
+            Smtp smtp = new Smtp(host, port, ssl, user, setting.getPassword(), settingInfo.isOauth2(), settingInfo);
             setting.setSmtp(smtp);
         });
         Optional<ImapInfo> imapInfo = info.getBestImapInfo();
@@ -42,7 +42,7 @@ public class SettingMapper {
             .replace("%EMAILADDRESS%", setting.getAddress())
             .replace("%EMAILDOMAIN%", mailAddressUtil.getDomainFromAddress(setting.getAddress()))
             .replace("%EMAILLOCALPART%", mailAddressUtil.getMailAddressLocalPart(setting.getAddress()));
-            Imap imap = new Imap(host, port, ssl, user, setting.getPassword(), settingInfo);
+            Imap imap = new Imap(host, port, ssl, user, setting.getPassword(), settingInfo.isOauth2(), settingInfo);
             setting.setImap(imap);
         });
         Optional<PopInfo> popInfo = info.getBestPopInfo();
@@ -58,7 +58,7 @@ public class SettingMapper {
             .replace("%EMAILADDRESS%", setting.getAddress())
             .replace("%EMAILDOMAIN%", mailAddressUtil.getDomainFromAddress(setting.getAddress()))
             .replace("%EMAILLOCALPART%", mailAddressUtil.getMailAddressLocalPart(setting.getAddress()));
-            Pop pop = new Pop(host, port, ssl, user, setting.getPassword(), settingInfo);
+            Pop pop = new Pop(host, port, ssl, user, setting.getPassword(), settingInfo.isOauth2(), settingInfo);
             setting.setPop(pop);
         });
     }

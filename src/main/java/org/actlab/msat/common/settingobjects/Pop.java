@@ -11,6 +11,7 @@ public class Pop extends Settingbase{
         boolean ssl,
         String user,
         String password,
+        boolean oauth2,
         PopInfo info
     ) {
         this.host = host;
@@ -18,6 +19,7 @@ public class Pop extends Settingbase{
         this.ssl = ssl;
         this.user = user;
         this.password = password;
+        this.oauth2 = oauth2;
         this.info = info;
     }
 

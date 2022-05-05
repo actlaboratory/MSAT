@@ -2,6 +2,7 @@ package org.actlab.msat.common.settingobjects;
 
 import org.actlab.msat.common.settingInfo.ImapInfo;
 
+
 public class Imap extends Settingbase{
     private ImapInfo info;
 
@@ -11,11 +12,13 @@ public class Imap extends Settingbase{
         boolean ssl,
         String user,
         String password,
+        boolean oauth2,
         ImapInfo info
     ) {
         this.host = host;
         this.port = port;
         this.ssl = ssl;
+        this.oauth2 = oauth2;
         this.user = user;
         this.password = password;
         this.info = info;
