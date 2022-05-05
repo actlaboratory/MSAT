@@ -24,6 +24,8 @@ public abstract class SettingInfo implements Serializable, Comparable<SettingInf
     @NotNull
     protected Boolean ssl;
 
+    protected boolean oauth2 = false;
+
     protected String description;
 
     protected String helpUrl;
@@ -71,6 +73,14 @@ public abstract class SettingInfo implements Serializable, Comparable<SettingInf
 
     public Boolean isSsl() {
         return ssl;
+    }
+
+    public boolean isOauth2() {
+        return oauth2;
+    }
+
+    public void setOauth2(boolean oauth2) {
+        this.oauth2 = oauth2;
     }
 
     public void setSsl(Boolean ssl) {

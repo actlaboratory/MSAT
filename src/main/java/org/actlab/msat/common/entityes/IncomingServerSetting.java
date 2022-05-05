@@ -12,7 +12,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Null;
+
 
 import org.actlab.msat.common.IncomingServerTypes;
 
@@ -47,6 +47,9 @@ public class IncomingServerSetting {
 
     @Column(nullable = false)
     private Boolean ssl;
+
+    @Column(nullable = false)
+    private boolean oauth2 = false;
 
     @Column(columnDefinition = "text")
     private String description;

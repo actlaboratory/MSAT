@@ -38,6 +38,9 @@ public class OutgoingServerSetting {
     @Column(nullable = false)
     private Boolean ssl;
 
+    @Column(nullable = false)
+    private boolean oauth2 = false;
+
     @Column(columnDefinition = "text")
     private String description;
 
