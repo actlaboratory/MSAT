@@ -8,6 +8,7 @@ CREATE TABLE `incoming_server_setting` (
     `port` SMALLINT unsigned not null,
     `user_name` varchar(255) not null,
     `ssl` bit not null,
+    `oauth2` bit not null,
     `description` text,
     `help_url` varchar(200),
     `source` char(100) not null,
